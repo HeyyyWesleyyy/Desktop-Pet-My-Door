@@ -55,7 +55,7 @@ public class Login extends javax.swing.JFrame {
         lbl_Close.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         lbl_Close.setForeground(new java.awt.Color(255, 102, 0));
         lbl_Close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_Close.setText("X");
+        lbl_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cross.png"))); // NOI18N
         lbl_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_Close.setPreferredSize(new java.awt.Dimension(50, 50));
         lbl_Close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,16 +128,16 @@ public class Login extends javax.swing.JFrame {
                 lbl_CadastrarMouseClicked(evt);
             }
         });
-        jPanel1.add(lbl_Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 460, 120, 30));
+        jPanel1.add(lbl_Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 460, 120, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Não possui uma conta?");
         jLabel10.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 330, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 460, 330, 30));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Cat-Login-Form.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dog-login-form.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -153,19 +153,20 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_CadastrarMouseClicked
 
     private void lbl_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CloseMouseClicked
-        this.dispose();
-        System.exit(0);
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza qe deseja sair?", null, JOptionPane.YES_NO_OPTION);
+        if(sair == JOptionPane.YES_OPTION){
+            this.dispose();
+            System.exit(0);
+        }
     }//GEN-LAST:event_lbl_CloseMouseClicked
 
     private void btn_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_entrarMouseClicked
         UsuarioDAO usuariodao = new UsuarioDAO();
         if(txt_login.getText().isEmpty() || txt_password.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!");
+            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!", "[ERRO]", JOptionPane.WARNING_MESSAGE);
         } else {
-            if(usuariodao.checkLogin(txt_login.getText(), txt_password.getText())){
-                this.dispose();
-                new Home().setVisible(true);
-            };
+            this.dispose();
+            usuariodao.checkLogin(txt_login.getText(), txt_password.getText());
         }
     }//GEN-LAST:event_btn_entrarMouseClicked
 
@@ -205,7 +206,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_entrar;
+    public static javax.swing.JButton btn_entrar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -217,7 +218,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lbl_Cadastrar;
     private javax.swing.JLabel lbl_Close;
-    private javax.swing.JTextField txt_login;
+    public static javax.swing.JTextField txt_login;
     private javax.swing.JPasswordField txt_password;
     // End of variables declaration//GEN-END:variables
 }

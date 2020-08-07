@@ -72,7 +72,9 @@
               <Color blue="0" green="66" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="X"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/cross.png"/>
+            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
@@ -317,7 +319,7 @@
               <Font name="Century Gothic" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="cc" red="ff" type="rgb"/>
+              <Color blue="0" green="66" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fa&#xe7;a login"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -332,7 +334,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="558" y="460" width="120" height="30"/>
+              <AbsoluteConstraints x="598" y="460" width="120" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -351,14 +353,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="460" width="330" height="30"/>
+              <AbsoluteConstraints x="400" y="460" width="330" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Dog-Register-Form.png"/>
+              <Image iconType="3" name="/img/cat-register-form.png"/>
             </Property>
           </Properties>
           <Constraints>

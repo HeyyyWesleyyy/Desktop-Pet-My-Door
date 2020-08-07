@@ -69,7 +69,7 @@ public class Cadastro extends javax.swing.JFrame {
         lbl_Close.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         lbl_Close.setForeground(new java.awt.Color(255, 102, 0));
         lbl_Close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_Close.setText("X");
+        lbl_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cross.png"))); // NOI18N
         lbl_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_Close.setPreferredSize(new java.awt.Dimension(50, 50));
         lbl_Close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,7 +154,7 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_Login.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        lbl_Login.setForeground(new java.awt.Color(255, 204, 0));
+        lbl_Login.setForeground(new java.awt.Color(255, 102, 0));
         lbl_Login.setText("Faça login");
         lbl_Login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_Login.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -163,15 +163,15 @@ public class Cadastro extends javax.swing.JFrame {
                 lbl_LoginMouseClicked(evt);
             }
         });
-        jPanel1.add(lbl_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 460, 120, 30));
+        jPanel1.add(lbl_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 460, 120, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Já possui uma conta?");
         jLabel10.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 330, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 330, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Dog-Register-Form.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cat-register-form.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -182,19 +182,21 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void lbl_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_LoginMouseClicked
         Login login = new Login();
-        this.setVisible(false);
         login.setVisible(true);
-        
+        this.setVisible(false);
     }//GEN-LAST:event_lbl_LoginMouseClicked
 
     private void lbl_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CloseMouseClicked
-       this.dispose();
-       System.exit(0);
+       int sair = JOptionPane.showConfirmDialog(null, "Tem certeza qe deseja sair?", null, JOptionPane.YES_NO_OPTION);
+        if(sair == JOptionPane.YES_OPTION){
+            this.dispose();
+            System.exit(0);
+        }
     }//GEN-LAST:event_lbl_CloseMouseClicked
 
     private void btn_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cadastrarMouseClicked
         if(txt_login.getText().isEmpty() || txt_password.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!");
+            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!", "[ERRO]", JOptionPane.WARNING_MESSAGE);
         } else {
             Usuario usuario = new Usuario();
             UsuarioDAO usuariodao = new UsuarioDAO();
@@ -202,10 +204,8 @@ public class Cadastro extends javax.swing.JFrame {
             usuario.setSenha(txt_password.getText());
             usuario.setEmail(txt_email.getText());
             usuario.setTelefone(txt_telefone.getText());
-            if(usuariodao.create(usuario)){
-                this.dispose();
-                new Home().setVisible(true);
-            };
+            usuariodao.create(usuario);
+            this.dispose();
         }
     }//GEN-LAST:event_btn_cadastrarMouseClicked
 

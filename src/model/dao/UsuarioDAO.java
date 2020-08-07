@@ -10,27 +10,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.Usuario;
+import view.Home;
+import view.Login;
 
 /**
  *
  * @author user
  */
 public class UsuarioDAO {
-    public boolean create(Usuario u){
+    public void create(Usuario u){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        boolean check = false;
         try {
             stmt = con.prepareStatement("SELECT * FROM usuario WHERE login = ?");
             stmt.setString(1, u.getNome());
             rs = stmt.executeQuery();
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Usuário já cadastrado!");
+                JOptionPane.showMessageDialog(null, "Usuário já cadastrado!", "[ERRO]", JOptionPane.WARNING_MESSAGE);
             } else {
                 stmt = con.prepareStatement("INSERT INTO usuario (login, senha, email, telefone) VALUES (?, ?, ?, ?)");
                 stmt.setString(1, u.getNome());
@@ -38,22 +40,42 @@ public class UsuarioDAO {
                 stmt.setString(3, u.getEmail());
                 stmt.setString(4, u.getTelefone());
                 stmt.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-                check = true;
+                JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+                new Home().setVisible(true);
+                Home.lbl_welcome.setText(u.getNome());
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "[ERRO] Ao cadastrar usuário: "+ex);
+            JOptionPane.showMessageDialog(null, "Não foi possível cadastrar usuário: "+ex, null, JOptionPane.ERROR_MESSAGE);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-        return check;
     }
     
-    public boolean checkLogin(String login, String senha){
+    public Usuario read(String login){
+        Usuario usuario = new Usuario();
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE login = ?");
+            stmt.setString(1, login);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                usuario.setNome("login");
+                usuario.setSenha("senha");
+                usuario.setEmail("email");
+                usuario.setTelefone("telefone");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuario;
+    }
+    
+    public void checkLogin(String login, String senha){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        boolean check = false;
         try {
             stmt = con.prepareStatement("SELECT * FROM usuario WHERE login = ?");
             stmt.setString(1, login);
@@ -63,9 +85,10 @@ public class UsuarioDAO {
                 stmt.setString(1, senha);
                 rs = stmt.executeQuery();
                 if(rs.next()){
-                   check = true;
+                    new Home().setVisible(true);
+                    Home.lbl_welcome.setText(rs.getString("login"));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Senha incorreta!");
+                    JOptionPane.showMessageDialog(null, "Senha incorreta!", "[ERRO]", JOptionPane.WARNING_MESSAGE);
                 }
                 /*Usuario usuario = new Usuario();
                 usuario.setNome(rs.getString("login"));
@@ -73,13 +96,12 @@ public class UsuarioDAO {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setTelefone(rs.getString("telefone"));*/
             } else {
-                JOptionPane.showMessageDialog(null, "Usuário inexistente!");
+                JOptionPane.showMessageDialog(null, "Usuário inexistente!", "[ERRO]", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
-        return check;
     }
 }

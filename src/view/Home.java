@@ -5,6 +5,10 @@
  */
 package view;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.bean.Usuario;
+
 /**
  *
  * @author user
@@ -33,6 +37,38 @@ public class Home extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        panel_Portas = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        panel_Pets = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lbl_Minimize = new javax.swing.JLabel();
+        lbl_welcome = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        txt_login = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txt_login2 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        txt_login1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        lbl_Close = new javax.swing.JLabel();
+        lbl_Logout = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -49,7 +85,7 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pet-hotel-sign-with-a-dog-and-a-cat-under-a-roof-line.png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 64, 64));
 
-        jLabel1.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel1.setBackground(new java.awt.Color(255, 102, 0));
         jLabel1.setOpaque(true);
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 64));
 
@@ -57,11 +93,227 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Home");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 20, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 180, 64));
 
+        panel_Portas.setBackground(new java.awt.Color(255, 153, 0));
+        panel_Portas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel_PortasMouseClicked(evt);
+            }
+        });
+        panel_Portas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ragdoll-cat.png"))); // NOI18N
+        panel_Portas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 64, 64));
+
+        jLabel5.setBackground(new java.awt.Color(255, 102, 0));
+        panel_Portas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 64));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Portas");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_Portas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 20, -1, -1));
+
+        jPanel2.add(panel_Portas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 198, 180, 64));
+
+        panel_Pets.setBackground(new java.awt.Color(255, 153, 0));
+        panel_Pets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel_PetsMouseClicked(evt);
+            }
+        });
+        panel_Pets.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/jack-russel-terrier.png"))); // NOI18N
+        panel_Pets.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 64, 64));
+
+        jLabel8.setBackground(new java.awt.Color(255, 102, 0));
+        panel_Pets.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 64));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Pets");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_Pets.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 20, -1, -1));
+
+        jPanel2.add(panel_Pets, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 134, 180, 64));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 550));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Buscar");
+        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 105, -1));
+
+        jLabel13.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel13.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pawprint.png"))); // NOI18N
+        jLabel13.setOpaque(true);
+        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 105, 105));
+
+        jLabel12.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel12.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel12.setOpaque(true);
+        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 10));
+
+        lbl_Minimize.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbl_Minimize.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_Minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
+        lbl_Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_Minimize.setPreferredSize(new java.awt.Dimension(50, 50));
+        lbl_Minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_MinimizeMouseClicked(evt);
+            }
+        });
+        jPanel6.add(lbl_Minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+
+        lbl_welcome.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        lbl_welcome.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_welcome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_welcome.setText("null");
+        lbl_welcome.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(lbl_welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 350, 50));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_login.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_login.setToolTipText("");
+        txt_login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, 30));
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel19.setText("Nome do pet:");
+        jLabel19.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 30));
+
+        txt_login2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_login2.setToolTipText("");
+        txt_login2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 320, 30));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel14.setText("ID do pet:");
+        jLabel14.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 200, 30));
+
+        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
+        jDateChooser1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jPanel5.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 30));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel18.setText("Data da passagem:");
+        jLabel18.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 200, 30));
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel20.setText("ID da porta:");
+        jLabel20.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 200, 30));
+
+        txt_login1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_login1.setToolTipText("");
+        txt_login1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 320, 30));
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 0));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Filtrar");
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setOpaque(true);
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 320, 30));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 420));
+
+        jTable1.setBackground(new java.awt.Color(255, 153, 0));
+        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setAutoscrolls(false);
+        jTable1.setGridColor(new java.awt.Color(255, 153, 0));
+        jTable1.setPreferredSize(new java.awt.Dimension(304, 64));
+        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 680, 92));
+
+        jLabel15.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel15.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel15.setOpaque(true);
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 10));
+
+        jPanel6.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 720, 340));
+
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel21.setText("Olá, ");
+        jLabel21.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 330, -1));
+
+        lbl_Close.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbl_Close.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_Close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cross.png"))); // NOI18N
+        lbl_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_Close.setPreferredSize(new java.awt.Dimension(50, 50));
+        lbl_Close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_CloseMouseClicked(evt);
+            }
+        });
+        jPanel6.add(lbl_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
+
+        lbl_Logout.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbl_Logout.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_Logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sign-out-option.png"))); // NOI18N
+        lbl_Logout.setText("Sair");
+        lbl_Logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_Logout.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(lbl_Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
+
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel22.setText("Filtros:");
+        jLabel22.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paw-bg.png"))); // NOI18N
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 550));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 720, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +329,32 @@ public class Home extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void panel_PortasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_PortasMouseClicked
+        CadastroPorta cadastroPorta = new CadastroPorta();
+        cadastroPorta.lbl_welcome_porta(Home.lbl_welcome.getText());
+        cadastroPorta.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panel_PortasMouseClicked
+
+    private void panel_PetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_PetsMouseClicked
+        CadastroPet cadastroPet = new CadastroPet();
+        cadastroPet.lbl_welcome_pet(Home.lbl_welcome.getText());
+        cadastroPet.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_panel_PetsMouseClicked
+
+    private void lbl_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CloseMouseClicked
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza qe deseja sair?", null, JOptionPane.YES_NO_OPTION);
+        if(sair == JOptionPane.YES_OPTION){
+            this.dispose();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_lbl_CloseMouseClicked
+
+    private void lbl_MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_MinimizeMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lbl_MinimizeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -114,11 +392,43 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    public static javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_Close;
+    private javax.swing.JLabel lbl_Logout;
+    private javax.swing.JLabel lbl_Minimize;
+    public static javax.swing.JLabel lbl_welcome;
+    public static javax.swing.JPanel panel_Pets;
+    public static javax.swing.JPanel panel_Portas;
+    private javax.swing.JTextField txt_login;
+    private javax.swing.JTextField txt_login1;
+    private javax.swing.JTextField txt_login2;
     // End of variables declaration//GEN-END:variables
 }
