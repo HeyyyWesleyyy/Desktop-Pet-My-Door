@@ -5,9 +5,15 @@
  */
 package view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.bean.Usuario;
+import model.dao.PassagemDAO;
+import model.dao.PetDAO;
 
 /**
  *
@@ -20,6 +26,8 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        DefaultTableModel defaultTableModel = (DefaultTableModel) jt_passagem.getModel();
+        jt_passagem.setRowSorter(new TableRowSorter (defaultTableModel));
     }
 
     /**
@@ -52,18 +60,18 @@ public class Home extends javax.swing.JFrame {
         lbl_Minimize = new javax.swing.JLabel();
         lbl_welcome = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        txt_login = new javax.swing.JTextField();
+        txt_idTag = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txt_login2 = new javax.swing.JTextField();
+        txt_nomePet = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txt_dataPassagem = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        txt_login1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        txt_idPorta = new javax.swing.JTextField();
+        btn_filtrar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_passagem = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         lbl_Close = new javax.swing.JLabel();
         lbl_Logout = new javax.swing.JLabel();
@@ -186,15 +194,15 @@ public class Home extends javax.swing.JFrame {
         lbl_welcome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl_welcome.setText("null");
         lbl_welcome.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel6.add(lbl_welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 350, 50));
+        jPanel6.add(lbl_welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 350, 55));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_login.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txt_login.setToolTipText("");
-        txt_login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.add(txt_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, 30));
+        txt_idTag.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_idTag.setToolTipText("");
+        txt_idTag.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_idTag, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, 30));
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 102, 0));
@@ -202,10 +210,10 @@ public class Home extends javax.swing.JFrame {
         jLabel19.setPreferredSize(new java.awt.Dimension(50, 50));
         jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 30));
 
-        txt_login2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txt_login2.setToolTipText("");
-        txt_login2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.add(txt_login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 320, 30));
+        txt_nomePet.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_nomePet.setToolTipText("");
+        txt_nomePet.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_nomePet, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 320, 30));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 102, 0));
@@ -213,9 +221,9 @@ public class Home extends javax.swing.JFrame {
         jLabel14.setPreferredSize(new java.awt.Dimension(50, 50));
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 200, 30));
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jPanel5.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 30));
+        txt_dataPassagem.setBackground(new java.awt.Color(255, 255, 255));
+        txt_dataPassagem.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jPanel5.add(txt_dataPassagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 30));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 102, 0));
@@ -229,48 +237,47 @@ public class Home extends javax.swing.JFrame {
         jLabel20.setPreferredSize(new java.awt.Dimension(50, 50));
         jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 200, 30));
 
-        txt_login1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txt_login1.setToolTipText("");
-        txt_login1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.add(txt_login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 320, 30));
+        txt_idPorta.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txt_idPorta.setToolTipText("");
+        txt_idPorta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.add(txt_idPorta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 320, 30));
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 0));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Filtrar");
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setOpaque(true);
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 320, 30));
-
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 420));
-
-        jTable1.setBackground(new java.awt.Color(255, 153, 0));
-        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btn_filtrar.setBackground(new java.awt.Color(255, 102, 0));
+        btn_filtrar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        btn_filtrar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_filtrar.setText("Filtrar");
+        btn_filtrar.setBorder(null);
+        btn_filtrar.setContentAreaFilled(false);
+        btn_filtrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_filtrar.setOpaque(true);
+        btn_filtrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_filtrarMouseClicked(evt);
             }
-        ));
-        jTable1.setAutoscrolls(false);
-        jTable1.setGridColor(new java.awt.Color(255, 153, 0));
-        jTable1.setPreferredSize(new java.awt.Dimension(304, 64));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 680, 92));
+        });
+        jPanel5.add(btn_filtrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 320, 30));
 
         jLabel15.setBackground(new java.awt.Color(255, 102, 0));
         jLabel15.setForeground(new java.awt.Color(255, 102, 0));
         jLabel15.setOpaque(true);
         jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 10));
+
+        jt_passagem.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Data da Passagem:", "Hora da Passagem:", "Id da Porta:", "Id da Tag:", "Direção:"
+            }
+        ));
+        jt_passagem.setMinimumSize(new java.awt.Dimension(70, 64));
+        jt_passagem.setPreferredSize(new java.awt.Dimension(90, 64));
+        jScrollPane2.setViewportView(jt_passagem);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 680, 92));
 
         jPanel6.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 720, 340));
 
@@ -279,7 +286,7 @@ public class Home extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel21.setText("Olá, ");
         jLabel21.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 330, -1));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 330, 55));
 
         lbl_Close.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         lbl_Close.setForeground(new java.awt.Color(255, 102, 0));
@@ -301,6 +308,11 @@ public class Home extends javax.swing.JFrame {
         lbl_Logout.setText("Sair");
         lbl_Logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_Logout.setPreferredSize(new java.awt.Dimension(50, 50));
+        lbl_Logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_LogoutMouseClicked(evt);
+            }
+        });
         jPanel6.add(lbl_Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -356,6 +368,216 @@ public class Home extends javax.swing.JFrame {
         this.setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lbl_MinimizeMouseClicked
 
+    private void btn_filtrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtrarMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel) jt_passagem.getModel();
+        defaultTableModel.setNumRows(0);
+        PassagemDAO passagemdao = new PassagemDAO();
+        if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().isEmpty()) && (txt_dataPassagem.getDate() == null)){
+            JOptionPane.showMessageDialog(this, "Pelo menos um dos campos precisa ser preenchido!", null, JOptionPane.WARNING_MESSAGE);
+        } else {
+            if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().isEmpty()) && (txt_dataPassagem.getDate() == null)){
+                passagemdao.readByPetName(txt_nomePet.getText()).forEach((passagem) -> {
+                    defaultTableModel.addRow(new Object[]{
+                        passagem.getDataPassagem(),
+                        passagem.getHoraPassagem(),
+                        passagem.getIdPorta(),
+                        passagem.getIdTag(),
+                        passagem.getDirecao()
+                    });
+                });
+            }  else {
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().isEmpty()) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByDoorId(Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                } 
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().length() > 0) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByIdTag(Integer.parseInt(txt_idTag.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().isEmpty())){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByPassageDate(dataFormatada).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().isEmpty()) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByPetNameAndDoorId(txt_nomePet.getText(), Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().length() > 0) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByPetNameAndIdTag(txt_nomePet.getText(), Integer.parseInt(txt_idTag.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().isEmpty())){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByPetNameAndPassageDate(txt_nomePet.getText(), dataFormatada).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().length() > 0) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByIdTagAndDoorId(Integer.parseInt(txt_idTag.getText()), Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if(txt_nomePet.getText().isEmpty() && txt_idPorta.getText().isEmpty() && txt_idTag.getText().length() > 0){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByIdTagAndPassageDate(Integer.parseInt(txt_idTag.getText()), dataFormatada).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                } else {
+                }
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().isEmpty())){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByDoorIdAndPassageDate(Integer.parseInt(txt_idPorta.getText()), dataFormatada).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().length() > 0) && (txt_dataPassagem.getDate() == null)){
+                    passagemdao.readByPetNameIdTagAndDoorId(txt_nomePet.getText(),Integer.parseInt(txt_idTag.getText()), Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().isEmpty())){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByPetNamePassageDateAndDoorId(txt_nomePet.getText(), dataFormatada, Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().isEmpty()) && (txt_idTag.getText().length() > 0)){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByPetNamePassageDateAndIdTag(txt_nomePet.getText(), dataFormatada, Integer.parseInt(txt_idTag.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().isEmpty()) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().length() > 0)){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByDoorIdPassageDateAndIdTag(Integer.parseInt(txt_idPorta.getText()), Integer.parseInt(txt_idTag.getText()), dataFormatada).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+                if((txt_nomePet.getText().length() > 0) && (txt_idPorta.getText().length() > 0) && (txt_idTag.getText().length() > 0)){
+                    Date data = txt_dataPassagem.getDate();
+                    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataFormatada = formatador.format(data);
+                    passagemdao.readByPetNamePassageDateIdPetAndDoorId(txt_nomePet.getText(), dataFormatada, Integer.parseInt(txt_idTag.getText()), Integer.parseInt(txt_idPorta.getText())).forEach((passagem) -> {
+                        defaultTableModel.addRow(new Object[]{
+                            passagem.getDataPassagem(),
+                            passagem.getHoraPassagem(),
+                            passagem.getIdPorta(),
+                            passagem.getIdTag(),
+                            passagem.getDirecao()
+                        });
+                    });
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_filtrarMouseClicked
+
+    private void lbl_LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_LogoutMouseClicked
+        int logout = JOptionPane.showConfirmDialog(null, "Tem certeza qe deseja sair da sua conta?", null, JOptionPane.YES_NO_OPTION);
+        if(logout == JOptionPane.YES_OPTION){
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_lbl_LogoutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -392,8 +614,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton btn_filtrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -419,16 +640,17 @@ public class Home extends javax.swing.JFrame {
     public static javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jt_passagem;
     private javax.swing.JLabel lbl_Close;
     private javax.swing.JLabel lbl_Logout;
     private javax.swing.JLabel lbl_Minimize;
     public static javax.swing.JLabel lbl_welcome;
     public static javax.swing.JPanel panel_Pets;
     public static javax.swing.JPanel panel_Portas;
-    private javax.swing.JTextField txt_login;
-    private javax.swing.JTextField txt_login1;
-    private javax.swing.JTextField txt_login2;
+    private com.toedter.calendar.JDateChooser txt_dataPassagem;
+    private javax.swing.JTextField txt_idPorta;
+    private javax.swing.JTextField txt_idTag;
+    private javax.swing.JTextField txt_nomePet;
     // End of variables declaration//GEN-END:variables
 }

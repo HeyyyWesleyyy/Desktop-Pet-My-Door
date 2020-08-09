@@ -5,8 +5,10 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.bean.Porta;
 import model.dao.PortaDAO;
 
 /**
@@ -34,6 +36,7 @@ public class MinhasPortas extends javax.swing.JFrame {
     
     public void readJTablePortas(){
         DefaultTableModel defaultTableModel = (DefaultTableModel) jt_portas.getModel();
+        defaultTableModel.setNumRows(0);
         PortaDAO portadao = new PortaDAO();
         portadao.read(userLogin).forEach((porta) -> {
             defaultTableModel.addRow(new Object[]{
@@ -57,7 +60,7 @@ public class MinhasPortas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lbl_Close = new javax.swing.JLabel();
-        btn_cadastrar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_portas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -90,17 +93,22 @@ public class MinhasPortas extends javax.swing.JFrame {
         });
         jPanel2.add(lbl_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
 
-        btn_cadastrar.setBackground(new java.awt.Color(255, 102, 0));
-        btn_cadastrar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        btn_cadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_cadastrar.setText("Excluir");
-        btn_cadastrar.setBorder(null);
-        btn_cadastrar.setContentAreaFilled(false);
-        btn_cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_cadastrar.setOpaque(true);
-        btn_cadastrar.setPreferredSize(new java.awt.Dimension(51, 30));
-        btn_cadastrar.setRequestFocusEnabled(false);
-        jPanel2.add(btn_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 290, -1));
+        btn_excluir.setBackground(new java.awt.Color(255, 102, 0));
+        btn_excluir.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        btn_excluir.setForeground(new java.awt.Color(255, 255, 255));
+        btn_excluir.setText("Excluir");
+        btn_excluir.setBorder(null);
+        btn_excluir.setContentAreaFilled(false);
+        btn_excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_excluir.setOpaque(true);
+        btn_excluir.setPreferredSize(new java.awt.Dimension(51, 30));
+        btn_excluir.setRequestFocusEnabled(false);
+        btn_excluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_excluirMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 290, -1));
 
         jt_portas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +126,7 @@ public class MinhasPortas extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cat-register-form.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dog-doors-form.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -133,6 +141,18 @@ public class MinhasPortas extends javax.swing.JFrame {
        cadastroPorta.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_lbl_CloseMouseClicked
+
+    private void btn_excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_excluirMouseClicked
+        if(jt_portas.getSelectedRow() != -1){
+            Porta porta = new Porta();
+            PortaDAO portadao = new PortaDAO();
+            porta.setIdPorta((int) jt_portas.getValueAt(jt_portas.getSelectedRow(), 0));
+            portadao.delete(porta);
+            readJTablePortas();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma porta para excluir!");
+        }
+    }//GEN-LAST:event_btn_excluirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -177,7 +197,7 @@ public class MinhasPortas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_excluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

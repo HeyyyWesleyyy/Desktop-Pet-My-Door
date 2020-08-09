@@ -73,4 +73,20 @@ public class PetDAO {
         }
         return pets;
     }
+    
+    public void delete(Pet pet){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement("DELETE FROM pet WHERE idTag = ?");
+            stmt.setInt(1, pet.getIdTag());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Pet excluído com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir pet: "+ex, null, JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
 }

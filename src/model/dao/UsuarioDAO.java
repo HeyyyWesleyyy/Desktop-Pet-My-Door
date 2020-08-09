@@ -51,27 +51,6 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuario read(String login){
-        Usuario usuario = new Usuario();
-        try {
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE login = ?");
-            stmt.setString(1, login);
-            rs = stmt.executeQuery();
-            if(rs.next()){
-                usuario.setNome("login");
-                usuario.setSenha("senha");
-                usuario.setEmail("email");
-                usuario.setTelefone("telefone");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return usuario;
-    }
-    
     public void checkLogin(String login, String senha){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;

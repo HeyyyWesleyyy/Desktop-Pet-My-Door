@@ -36,6 +36,7 @@ public class MeusPets extends javax.swing.JFrame {
     
    public void readJTablePets(){
         DefaultTableModel defaultTableModel = (DefaultTableModel) jt_pets.getModel();
+        defaultTableModel.setNumRows(0);
         PetDAO petdao = new PetDAO();
         petdao.read(userLogin).forEach((pet) -> {
             defaultTableModel.addRow(new Object[]{
@@ -143,7 +144,15 @@ public class MeusPets extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_Close2MouseClicked
 
     private void btn_excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_excluirMouseClicked
-        // TODO add your handling code here:
+        if(jt_pets.getSelectedRow() != -1){
+            Pet pet = new Pet();
+            PetDAO petdao = new PetDAO();
+            pet.setIdTag((int) jt_pets.getValueAt(jt_pets.getSelectedRow(), 0));
+            petdao.delete(pet);
+            readJTablePets();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um pet para excluir!");
+        }
     }//GEN-LAST:event_btn_excluirMouseClicked
 
     /**

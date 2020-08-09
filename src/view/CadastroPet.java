@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.bean.Pet;
 import model.bean.Usuario;
@@ -59,6 +60,8 @@ public class CadastroPet extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        lbl_Logout = new javax.swing.JLabel();
+        lbl_Minimize = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         lbl_Close = new javax.swing.JLabel();
@@ -67,6 +70,12 @@ public class CadastroPet extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btn_meusPets = new javax.swing.JButton();
         btn_cadastrar = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,6 +176,33 @@ public class CadastroPet extends javax.swing.JFrame {
         jLabel12.setOpaque(true);
         jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 10));
 
+        lbl_Logout.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbl_Logout.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_Logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sign-out-option.png"))); // NOI18N
+        lbl_Logout.setText("Sair");
+        lbl_Logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_Logout.setPreferredSize(new java.awt.Dimension(50, 50));
+        lbl_Logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_LogoutMouseClicked(evt);
+            }
+        });
+        jPanel6.add(lbl_Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
+
+        lbl_Minimize.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbl_Minimize.setForeground(new java.awt.Color(255, 102, 0));
+        lbl_Minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
+        lbl_Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_Minimize.setPreferredSize(new java.awt.Dimension(50, 50));
+        lbl_Minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_MinimizeMouseClicked(evt);
+            }
+        });
+        jPanel6.add(lbl_Minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -239,7 +275,49 @@ public class CadastroPet extends javax.swing.JFrame {
 
         jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, 540));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paw-bg.png"))); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("<html>\n<body>\n<p style=\"text-align: justify\">Utilize o painel de filtros na página inicial, para buscar os relatórios dos registros das passagens de seus animais de estimação pelas portas cadastradas.</p>\n</body>\n</html>");
+        jLabel20.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 290, 130));
+
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 72)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel21.setText("<html> <body> <p style=\"text-align: center\">3</p> </body> </html>");
+        jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel21.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 330, 130));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 72)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel18.setText("<html> <body> <p style=\"text-align: center\">2</p> </body> </html>");
+        jLabel18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel18.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 330, 110));
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("<html>\n<body>\n<p style=\"text-align: justify\">Cadastre as portas de seu animal de estimação no painel Portas, ou clique no botão Minhas Portas para ver as portas cadastradas.</p>\n</body>\n</html>");
+        jLabel19.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 290, 110));
+
+        jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("<html>\n<body>\n<p style=\"text-align: justify\">Cadastre a tag de seu animal de estimação no painel Pets, ou clique no botão Meus Pets para ver os animais cadastrados.</p>\n</body>\n</html>");
+        jLabel16.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 290, 100));
+
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 72)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("<html>\n<body>\n<p style=\"text-align: center\">1</p>\n</body>\n</html>");
+        jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel17.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 330, 100));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/green-paw.png"))); // NOI18N
         jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 550));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 720, 550));
@@ -302,6 +380,19 @@ public class CadastroPet extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_cadastrarMouseClicked
 
+    private void lbl_LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_LogoutMouseClicked
+        int logout = JOptionPane.showConfirmDialog(null, "Tem certeza qe deseja sair da sua conta?", null, JOptionPane.YES_NO_OPTION);
+        if(logout == JOptionPane.YES_OPTION){
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_lbl_LogoutMouseClicked
+
+    private void lbl_MinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_MinimizeMouseClicked
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lbl_MinimizeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -362,7 +453,13 @@ public class CadastroPet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -376,6 +473,8 @@ public class CadastroPet extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_Close;
+    private javax.swing.JLabel lbl_Logout;
+    private javax.swing.JLabel lbl_Minimize;
     private javax.swing.JPanel panel_Home;
     private javax.swing.JPanel panel_Pets;
     private javax.swing.JPanel panel_Portas;

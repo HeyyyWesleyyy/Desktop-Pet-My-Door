@@ -63,4 +63,20 @@ public class PortaDAO {
         }
         return portas;
     }
+    
+    public void delete(Porta porta){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement("DELETE FROM porta WHERE idPorta = ?");
+            stmt.setInt(1, porta.getIdPorta());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Porta excluída com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir porta: "+ex, null, JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
 }
